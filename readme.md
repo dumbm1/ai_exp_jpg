@@ -1,0 +1,1 @@
+#Sample template for build html/css/js extension panel for Adobe Applications

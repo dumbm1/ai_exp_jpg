@@ -1,0 +1,9 @@
+*~
+*.ini
+test*.jsx
+
+#ignore all files in folder "tmpl"
+img/**/tmpl/*
+
+.idea/*
+
