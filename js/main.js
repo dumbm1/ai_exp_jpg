@@ -21,9 +21,21 @@
     themeManager.init();
     loadJSX("json2.js");
 
+    function testCount() {
+      var count = 0;
+      return function (str) {
+        return str + ++count;
+      }
+    }
+
+    var count = testCount();
+
     $("#btn_test").click(function () {
-      this.value = 'test1';
-      csInterface.evalScript("");
+
+      this.value = count('Test #');
+      csInterface.evalScript("ai_exp_jpg()", function (result) {
+
+      });
     });
 
     $("#btn_send").click(function () {
