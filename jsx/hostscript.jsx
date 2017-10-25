@@ -11,8 +11,8 @@ function ai_exp_jpg(opts) {
       str_compatible            = encodeStrToAnsii(new File(str).fsName),
 
       useArtboards              = '1',
-      allArtboards              = '0',
-      artboardsRange            = '1-3',
+      allArtboards              = '1',
+      artboardsRange            = '2',
       artboardsRange_compatible = encodeStrToAnsii(artboardsRange),
 
       res                       = 300,
