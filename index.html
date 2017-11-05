@@ -4,16 +4,16 @@
     <meta charset="utf-8">
 
     <!-- подключаем стили Mocha, для отображения результатов -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <link rel="stylesheet" href="js/libs/mocha/2.1.0/mocha.css">
     <!-- подключаем библиотеку Mocha -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="js/libs/mocha/2.1.0/mocha.js"></script>
     <!-- настраиваем Mocha: предстоит BDD-тестирование -->
     <script>
         mocha.setup('bdd');
     </script>
 
     <!-- подключаем chai -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script src="js/libs/chai/2.0.0/chai.js"></script>
     <!-- в chai есть много всего, выносим assert в глобальную область -->
     <script>
         var assert = chai.assert;
@@ -25,14 +25,17 @@
 
     <title></title>
     <style type="text/css">
+        #mocha {
+            position: relative;
+            margin: auto;
+        }
     </style>
 </head>
 
 <body class="hostElt">
 
 <div id="content">
-    <!-- в элементе с id="mocha" будут результаты тестов -->
-    <div id="mocha"></div>
+
     <div><input type="button" id="btn_test" class="hostButton" value="Test">
     </div>
     <div><input type="button" id="btn_send" class="hostButton" value="Send data from JSX to HTML">
@@ -41,7 +44,11 @@
     </div>
     <div><input type="button" id="btn_reloadJsx" class="hostButton" value="Reload JSX"/>
     </div>
+
+
 </div>
+<!-- в элементе с id="mocha" будут результаты тестов -->
+<div id="mocha"></div>
 
 
 <script src="js/tests.js"></script>
