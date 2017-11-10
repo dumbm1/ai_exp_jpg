@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionManifest Version="4.0"
-                   ExtensionBundleId="com.wk.ai_exp_jpg"
-                   ExtensionBundleVersion="0.0.1"
-                   ExtensionBundleName="com.wk.ai_exp_jpg"
+                   ExtensionBundleId="com.wk.ai_exp"
+                   ExtensionBundleVersion="0.2.0"
+                   ExtensionBundleName="com.wk.ai_exp"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Author><![CDATA[Marat Shagiev]]></Author>
     <Contact mailto="m_js@bk.ru"><![CDATA[m_js@bk.ru]]></Contact>
@@ -13,8 +13,7 @@
         ]]>
     </Abstract>
     <ExtensionList>
-        <Extension Id="com.wk.ai_exp_jpg" Version="0.0.1"/>
-        <Extension Id="com.wk.ai_exp_jpg.settings" Version="0.0.1"/>
+        <Extension Id="com.wk.ai_exp" Version="0.1.0"/>
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -28,7 +27,7 @@
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>
-        <Extension Id="com.wk.ai_exp_jpg">
+        <Extension Id="com.wk.ai_exp">
             <DispatchInfo>
                 <Resources>
                     <MainPath>./index.html</MainPath>
@@ -39,7 +38,7 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>ai_exp_jpg</Menu>
+                    <Menu>ai_exp_0.1.0</Menu>
                     <Geometry>
                         <Size>
                             <Height>300</Height>
@@ -55,32 +54,12 @@
                         </Size>
                     </Geometry>
                     <Icons>
-                        <Icon Type="Normal">./icons/iconNormal.png</Icon>
-                        <Icon Type="RollOver">./icons/iconRollover.png</Icon>
-                        <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
-                        <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
-                        <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+                        <Icon Type="Normal">./icons/base-01.png</Icon>
+                        <Icon Type="RollOver">./icons/base-01.png</Icon>
+                        <Icon Type="Disabled">./icons/base-01.png</Icon>
+                        <Icon Type="DarkNormal">./icons/base-01.png</Icon>
+                        <Icon Type="DarkRollOver">./icons/base-01.png</Icon>
                     </Icons>
-                </UI>
-            </DispatchInfo>
-        </Extension>
-        <Extension Id="com.wk.ai_exp_jpg.settings">
-            <DispatchInfo>
-                <Resources>
-                    <MainPath>./settings.html</MainPath>
-                    <ScriptPath>./jsx/settings.jsx</ScriptPath>
-                </Resources>
-                <Lifecycle>
-                    <AutoVisible>false</AutoVisible>
-                </Lifecycle>
-                <UI>
-                    <Type>ModalDialog</Type>
-                    <Geometry>
-                        <Size>
-                            <Height>550</Height>
-                            <Width>800</Width>
-                        </Size>
-                    </Geometry>
                 </UI>
             </DispatchInfo>
         </Extension>

@@ -26,29 +26,363 @@
     <title></title>
     <style type="text/css">
         #mocha {
-            position: relative;
             margin: auto;
         }
+
+        input[type=checkbox], input[type=radio] {
+            opacity: 1;
+            position: relative;
+            margin: auto;
+            display: inline-block;
+        }
+
+        input[type=number] {
+            border: 1px solid rgba(0, 0, 0, .4);
+        }
+
+        input[type=text] {
+            border: 1px solid rgba(0, 0, 0, .4);
+        }
+
+        .hiddenElem {
+            display: none;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .exp-title {
+            background: rgba(0, 0, 0, .3);
+            width: 100%;
+            height: 25px;
+        }
+
+        .exp-title label {
+            display: inline-block;
+            margin: 3px 0 0 5px;
+            cursor: pointer;
+        }
+
+        .exp-title label:first-of-type {
+            font-weight: bold;
+        }
+
+        .exp-title:hover {
+            cursor: pointer;
+        }
+
+        .btn-export {
+            display: block;
+            margin: 1px auto;
+            width: 99%;
+        }
+
+        .line {
+            margin: 5px;
+            align-items: center;
+            border: 1px dotted rgba(0, 0, 0, .4);
+        }
+
+        .center {
+            margin-top: 3px;
+        }
+
+        #export_sets {
+            border: 1px solid rgba(0, 0, 0, .4);
+        }
+
+        #path input[type=text] {
+            width: 250px;
+            height: 16px;
+        }
+
+
     </style>
 </head>
 
 <body class="hostElt">
 
 <div id="content">
+    <div id="export_sets" class="export-set">
+        <div class="exp-title"><label>General</label></div>
+        <form id="form_general">
+            <div id="exp_content_general" class="exp-content hiddenElem">
+                <div class="line">
+                    <label for="sel_color_model_general">Color Model:</label>
+                    <select id="sel_color_model_general" class="hostTextarea">
+                        <option>RGB</option>
+                        <option>CMYK</option>
+                        <option>Grayscale</option>
+                    </select>
+                    <label for="nmb_quality_general">Quality:</label>
+                    <input type="number" id="nmb_quality_general" class="hostTextarea" min="1" max="10" step="1"
+                           value="6">
+                    <label for="sel_resolution_general">Resolution:</label>
+                    <select id="sel_resolution_general" class="hostTextarea">
+                        <option>72</option>
+                        <option>150</option>
+                        <option>200</option>
+                        <option>250</option>
+                        <option>300</option>
+                        <option>350</option>
+                        <option>400</option>
+                        <option>450</option>
+                        <option>500</option>
+                        <option>550</option>
+                    </select>
+                </div>
+                <div id="compress_method_general" class="line">
+                    <label for="sel_compress_method_general">Compression Method:</label>
+                    <select id="sel_compress_method_general" class="hostTextarea">
+                        <option>Baseline (Standard)</option>
+                        <option>Baseline Optimized</option>
+                        <option>Progressive</option>
+                    </select>
+                </div>
+                <div id="antialias_general" class="line">
+                    <label for="sel_antialias_general">Anti-aliasing:</label>
+                    <select id="sel_antialias_general" class="hostTextarea">
+                        <option>None</option>
+                        <option>Art Optimized (Supersampling)</option>
+                        <option>Text Optimized (Hinted)</option>
+                    </select>
+                </div>
+                <div id="artbs_general" class="line">
+                    <input type="checkbox" value="Use artboards" id="ch_use_artbs_general">
+                    <label for="ch_use_artbs_general">Use Artboards</label>
+                    <input type="radio" id="rad_artbs_all_general" name="choose_artbs" checked>
+                    <label for="rad_artbs_all_general">All</label>
+                    <input type="radio" id="rad_artbs_range_general" name="choose_artbs">
+                    <label for="rad_artbs_range_general">Range</label>
+                    <label for="txt_artbs_range_general"></label>
+                    <input type="text" id="txt_artbs_range_general" class="hostTextarea" value="2-3">
+                </div>
+                <div id="postfix_general" class="line">
+                    <label for="txt_postfix_general">Postfix Label:</label>
+                    <input type="text" id="txt_postfix_general" class="hostTextarea" value=""
+                           placeholder="" width="200px">
+                </div>
+                <div id="btns_general" class="line">
+                    <input type="button" id="btn_defaults_general" class="hostButton" value="Defaults"/>
+                </div>
+            </div>
+            <input type="button" id="btn_export_general" class="hostButton btn-export" value="Export"/>
+        </form>
+        <div class="exp-title"><label>Text</label></div>
+        <form id="form_text">
+            <div id="exp_content_text" class="exp-content hiddenElem">
+                <div class="line">
+                    <label for="sel_color_model_text">Color Model:</label>
+                    <select id="sel_color_model_text" class="hostTextarea">
+                        <option>RGB</option>
+                        <option>CMYK</option>
+                        <option>Grayscale</option>
+                    </select>
+                    <label for="nmb_quality_text">Quality:</label>
+                    <input type="number" id="nmb_quality_text" class="hostTextarea" min="1" max="10" step="1"
+                           value="6">
+                    <label for="sel_resolution_text">Resolution:</label>
+                    <select id="sel_resolution_text" class="hostTextarea">
+                        <option>72</option>
+                        <option>150</option>
+                        <option>200</option>
+                        <option>250</option>
+                        <option>300</option>
+                        <option>350</option>
+                        <option>400</option>
+                        <option>450</option>
+                        <option>500</option>
+                        <option>550</option>
+                    </select>
+                </div>
+                <div id="compress_method_text" class="line">
+                    <label for="sel_compress_method_text">Compression Method:</label>
+                    <select id="sel_compress_method_text" class="hostTextarea">
+                        <option>Baseline (Standard)</option>
+                        <option>Baseline Optimized</option>
+                        <option>Progressive</option>
+                    </select>
+                </div>
+                <div id="antialias_text" class="line">
+                    <label for="sel_antialias_text">Anti-aliasing:</label>
+                    <select id="sel_antialias_text" class="hostTextarea">
+                        <option>None</option>
+                        <option>Art Optimized (Supersampling)</option>
+                        <option>Text Optimized (Hinted)</option>
+                    </select>
+                </div>
+                <div id="artbs_text" class="line">
+                    <input type="checkbox" value="Use artboards" id="ch_use_artbs_text">
+                    <label for="ch_use_artbs_text">Use Artboards</label>
+                    <input type="radio" id="rad_artbs_all_text" name="choose_artbs" checked>
+                    <label for="rad_artbs_all_text">All</label>
+                    <input type="radio" id="rad_artbs_range_text" name="choose_artbs">
+                    <label for="rad_artbs_range_text">Range</label>
+                    <label for="txt_artbs_range_text"></label>
+                    <input type="text" id="txt_artbs_range_text" class="hostTextarea" value="">
+                </div>
+                <div id="postfix_text" class="line">
+                    <label for="txt_postfix_text">Postfix Label:</label>
+                    <input type="text" id="txt_postfix_text" class="hostTextarea" value=""
+                           placeholder="" width="200px">
+                </div>
+                <div id="btns_text" class="line">
+                    <input type="button" id="btn_defaults_text" class="hostButton" value="Defaults"/>
+                </div>
+            </div>
+            <input type="button" id="btn_export_text" class="hostButton btn-export" value="Export"/>
+        </form>
+        <div class="exp-title"><label>White</label></div>
+        <form id="form_white">
+            <div id="exp_content_white" class="exp-content hiddenElem">
+                <div class="line">
+                    <label for="sel_color_model_white">Color Model:</label>
+                    <select id="sel_color_model_white" class="hostTextarea">
+                        <option>RGB</option>
+                        <option>CMYK</option>
+                        <option>Grayscale</option>
+                    </select>
+                    <label for="nmb_quality_white">Quality:</label>
+                    <input type="number" id="nmb_quality_white" class="hostTextarea" min="1" max="10" step="1"
+                           value="6">
+                    <label for="sel_resolution_white">Resolution:</label>
+                    <select id="sel_resolution_white" class="hostTextarea">
+                        <option>72</option>
+                        <option>150</option>
+                        <option>200</option>
+                        <option>250</option>
+                        <option>300</option>
+                        <option>350</option>
+                        <option>400</option>
+                        <option>450</option>
+                        <option>500</option>
+                        <option>550</option>
+                    </select>
+                </div>
+                <div id="compress_method_white" class="line">
+                    <label for="sel_compress_method_white">Compression Method:</label>
+                    <select id="sel_compress_method_white" class="hostTextarea">
+                        <option>Baseline (Standard)</option>
+                        <option>Baseline Optimized</option>
+                        <option>Progressive</option>
+                    </select>
+                </div>
+                <div id="antialias_white" class="line">
+                    <label for="sel_antialias_white">Anti-aliasing:</label>
+                    <select id="sel_antialias_white" class="hostTextarea">
+                        <option>None</option>
+                        <option>Art Optimized (Supersampling)</option>
+                        <option>Text Optimized (Hinted)</option>
+                    </select>
+                </div>
+                <div id="artbs_white" class="line">
+                    <input type="checkbox" value="Use artboards" id="ch_use_artbs_white">
+                    <label for="ch_use_artbs_white">Use Artboards</label>
+                    <input type="radio" id="rad_artbs_all_white" name="choose_artbs" checked>
+                    <label for="rad_artbs_all_white">All</label>
+                    <input type="radio" id="rad_artbs_range_white" name="choose_artbs">
+                    <label for="rad_artbs_range_white">Range</label>
+                    <label for="txt_artbs_range_white"></label>
+                    <input type="text" id="txt_artbs_range_white" class="hostTextarea" value="">
+                </div>
+                <div id="postfix_white" class="line">
+                    <label for="txt_postfix_white">Postfix Label:</label>
+                    <input type="text" id="txt_postfix_white" class="hostTextarea" value=""
+                           placeholder="" width="200px">
+                </div>
+                <div id="btns_white" class="line">
+                    <input type="button" id="btn_defaults_white" class="hostButton" value="Defaults"/>
+                </div>
+            </div>
+            <input type="button" id="btn_export_white" class="hostButton btn-export" value="Export"/>
+        </form>
+        <div class="exp-title"><label>Other</label></div>
+        <form id="form_other">
+            <div id="exp_content_other" class="exp-content hiddenElem">
+                <div class="line">
+                    <label for="sel_color_model_other">Color Model:</label>
+                    <select id="sel_color_model_other" class="hostTextarea">
+                        <option>RGB</option>
+                        <option>CMYK</option>
+                        <option>Grayscale</option>
+                    </select>
+                    <label for="nmb_quality_other">Quality:</label>
+                    <input type="number" id="nmb_quality_other" class="hostTextarea" min="1" max="10" step="1"
+                           value="6">
+                    <label for="sel_resolution_other">Resolution:</label>
+                    <select id="sel_resolution_other" class="hostTextarea">
+                        <option>72</option>
+                        <option>150</option>
+                        <option>200</option>
+                        <option>250</option>
+                        <option>300</option>
+                        <option>350</option>
+                        <option>400</option>
+                        <option>450</option>
+                        <option>500</option>
+                        <option>550</option>
+                    </select>
+                </div>
+                <div id="compress_method_other" class="line">
+                    <label for="sel_compress_method_other">Compression Method:</label>
+                    <select id="sel_compress_method_other" class="hostTextarea">
+                        <option>Baseline (Standard)</option>
+                        <option>Baseline Optimized</option>
+                        <option>Progressive</option>
+                    </select>
+                </div>
+                <div id="antialias_other" class="line">
+                    <label for="sel_antialias_other">Anti-aliasing:</label>
+                    <select id="sel_antialias_other" class="hostTextarea">
+                        <option>None</option>
+                        <option>Art Optimized (Supersampling)</option>
+                        <option>Text Optimized (Hinted)</option>
+                    </select>
+                </div>
+                <div id="artbs_other" class="line">
+                    <input type="checkbox" value="Use artboards" id="ch_use_artbs_other">
+                    <label for="ch_use_artbs_other">Use Artboards</label>
+                    <input type="radio" id="rad_artbs_all_other" name="choose_artbs" checked>
+                    <label for="rad_artbs_all_other">All</label>
+                    <input type="radio" id="rad_artbs_range_other" name="choose_artbs">
+                    <label for="rad_artbs_range_other">Range</label>
+                    <label for="txt_artbs_range_other"></label>
+                    <input type="text" id="txt_artbs_range_other" class="hostTextarea" value="">
+                </div>
+                <div id="postfix_other" class="line">
+                    <label for="txt_postfix_other">Postfix Label:</label>
+                    <input type="text" id="txt_postfix_other" class="hostTextarea" value=""
+                           placeholder="" width="200px">
+                </div>
+                <div id="btns_other" class="line">
+                    <input type="button" id="btn_defaults_other" class="hostButton" value="Defaults"/>
+                </div>
+            </div>
+            <input type="button" id="btn_export_other" class="hostButton btn-export" value="Export"/>
+        </form>
+    </div>
 
-    <div><input type="button" id="btn_test" class="hostButton" value="Test">
+    <div>
+        <div id="path" class="center">
+            <label for="txt_path">Path:</label>
+            <input type="text" id="txt_path" class="hostTextarea">
+            <input type="button" value="Change" class="hostButton">
+        </div>
+        <div class="center">
+            <input type="button" id="btn_defaults_all" class="hostButton" value="Defaults All"/>
+            <input type="button" id="btn_reloadHtml" class="hostButton" value="Reload HTML"/>
+            <input type="button" id="btn_reloadJsx" class="hostButton" value="Reload JSX"/>
+        </div>
     </div>
-    <div><input type="button" id="btn_send" class="hostButton" value="Send data from JSX to HTML">
-    </div>
-    <div><input type="button" id="btn_reloadHtml" class="hostButton" value="Reload HTML"/>
-    </div>
-    <div><input type="button" id="btn_reloadJsx" class="hostButton" value="Reload JSX"/>
-    </div>
-
 
 </div>
 <!-- в элементе с id="mocha" будут результаты тестов -->
-<div id="mocha"></div>
+<!--<div id="mocha"></div>-->
 
 
 <script src="js/tests.js"></script>
@@ -59,15 +393,105 @@
 
 <!-- запустить тесты! -->
 <script>
-    mocha.run();
+    //    mocha.run();
 </script>
 
 
 <script src="js/libs/CSInterface.js"></script>
 <script src="js/libs/jquery-2.0.2.min.js"></script>
 
+<script src="js/libs/sisyphus.js"></script>
+
 <script src="js/themeManager.js"></script>
 <script src="js/main.js"></script>
+
+
+<script>
+    var expTitleGeneral = document.getElementsByClassName("exp-title")[0];
+    var expTitleText = document.getElementsByClassName("exp-title")[1];
+    var expTitleWhite = document.getElementsByClassName("exp-title")[2];
+    var expTitleOther = document.getElementsByClassName("exp-title")[3];
+
+    expTitleGeneral.addEventListener('click', function () {
+        $("#exp_content_general").toggleClass("hiddenElem");
+    });
+    expTitleText.addEventListener('click', function () {
+        $("#exp_content_text").toggleClass("hiddenElem");
+    });
+    expTitleWhite.addEventListener('click', function () {
+        $("#exp_content_white").toggleClass("hiddenElem");
+    });
+    expTitleOther.addEventListener('click', function () {
+        $("#exp_content_other").toggleClass("hiddenElem");
+    });
+
+    $("#form_general").sisyphus({customKeyPrefix: 'general'});
+    $("#form_text").sisyphus({customKeyPrefix: 'text'});
+    $("#form_white").sisyphus({customKeyPrefix: 'white'});
+    $("#form_other").sisyphus({customKeyPrefix: 'other'});
+
+    $("#btn_defaults_all").click(function () {
+        $("form").trigger('reset');
+    });
+    $("#btn_defaults_general").click(function () {
+        $("#form_general").trigger('reset');
+    });
+    $("#btn_defaults_text").click(function () {
+        $("#form_text").trigger('reset');
+    });
+    $("#btn_defaults_white").click(function () {
+        $("#form_white").trigger('reset');
+    });
+    $("#btn_defaults_white").click(function () {
+        $("#form_other").trigger('reset');
+    });
+
+    expTitleGeneral.setAttribute('title', getFormValues('general'));
+    expTitleText.setAttribute('title', getFormValues('text'));
+    expTitleWhite.setAttribute('title', getFormValues('white'));
+    expTitleOther.setAttribute('title', getFormValues('other'));
+
+    /* var inf_general = document.createElement('label');
+     var inf_text = document.createElement('label');
+     var inf_white = document.createElement('label');
+
+     inf_general.innerHTML = getFormValues('general');
+     expTitleGeneral.appendChild(inf_general);
+
+     inf_text.innerHTML = getFormValues('text');
+     expTitleText.appendChild(inf_text);
+
+     inf_white.innerHTML = getFormValues('white');
+     expTitleWhite.appendChild(inf_white);*/
+
+
+    function getFormValues(name) {
+        var result = [];
+        result.push($("#sel_color_model_" + name).find('option:selected').text());
+        result.push($("#nmb_quality_" + name).val());
+        result.push($("#sel_resolution_" + name).find('option:selected').text());
+        result.push($("#sel_compress_method_" + name).find('option:selected').text());
+        result.push($("#sel_antialias_" + name).find('option:selected').text());
+
+        if ($("#ch_use_artbs_" + name).prop('checked')) {
+            if ($("#rad_artbs_all_" + name).prop('checked')) {
+                result.push('All artboards');
+            } else {
+                result.push($("#txt_artbs_range_" + name).val());
+            }
+        }
+
+        /*result.push( $("#ch_use_artbs_" + name).prop('checked'));
+        result.push( $("#rad_artbs_all_" + name).prop('checked'));
+        result.push( $("#rad_artbs_range_" + name).prop('checked'));
+        result.push( $("#txt_artbs_range_" + name).val());*/
+        result.push($("#txt_postfix_" + name).val());
+        return result;
+    }
+
+
+</script>
+
 
 </body>
 </html>

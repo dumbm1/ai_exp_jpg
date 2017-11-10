@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <ExtensionList>
-    <Extension Id="com.wk.ai_exp_jpg">
+    <Extension Id="com.wk.ai_exp">
         <HostList>
            
             <Host Name="ILST" Port="8089"/>
