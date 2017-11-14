@@ -3,103 +3,12 @@
 <head>
     <meta charset="utf-8">
 
-    <!-- подключаем стили Mocha, для отображения результатов -->
-    <link rel="stylesheet" href="js/libs/mocha/2.1.0/mocha.css">
-    <!-- подключаем библиотеку Mocha -->
-    <script src="js/libs/mocha/2.1.0/mocha.js"></script>
-    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
-    <script>
-        mocha.setup('bdd');
-    </script>
-
-    <!-- подключаем chai -->
-    <script src="js/libs/chai/2.0.0/chai.js"></script>
-    <!-- в chai есть много всего, выносим assert в глобальную область -->
-    <script>
-        var assert = chai.assert;
-    </script>
-
-
     <link rel="stylesheet" href="css/topcoat-desktop-dark.min.css"/>
     <link id="hostStyle" rel="stylesheet" href="css/styles.css"/>
 
-    <title></title>
+    <title>ai_exp_0.3.0</title>
     <style type="text/css">
-        #mocha {
-            margin: auto;
-        }
 
-        input[type=checkbox], input[type=radio] {
-            opacity: 1;
-            position: relative;
-            margin: auto;
-            display: inline-block;
-        }
-
-        input[type=number] {
-            border: 1px solid rgba(0, 0, 0, .4);
-        }
-
-        input[type=text] {
-            border: 1px solid rgba(0, 0, 0, .4);
-        }
-
-        .hiddenElem {
-            display: none;
-        }
-
-        .float-left {
-            float: left;
-        }
-
-        .float-right {
-            float: right;
-        }
-
-        .exp-title {
-            background: rgba(0, 0, 0, .3);
-            width: 100%;
-            height: 25px;
-        }
-
-        .exp-title label {
-            display: inline-block;
-            margin: 3px 0 0 5px;
-            cursor: pointer;
-        }
-
-        .exp-title label:first-of-type {
-            font-weight: bold;
-        }
-
-        .exp-title:hover {
-            cursor: pointer;
-        }
-
-        .btn-export {
-            display: block;
-            margin: 1px auto;
-            width: 99%;
-        }
-
-        .line {
-            margin: 5px;
-            align-items: center;
-            border: 1px dotted rgba(0, 0, 0, .4);
-        }
-
-        .center {
-            margin-top: 3px;
-        }
-
-        #export_sets {
-            border: 1px solid rgba(0, 0, 0, .4);
-        }
-
-        #path input[type=text] {
-            width: 250px;
-            height: 16px;
-        }
 
 
     </style>
@@ -108,6 +17,7 @@
 <body class="hostElt">
 
 <div id="content">
+
     <div id="export_sets" class="export-set">
         <div class="exp-title"><label>General</label></div>
         <form id="form_general">
@@ -381,20 +291,6 @@
     </div>
 
 </div>
-<!-- в элементе с id="mocha" будут результаты тестов -->
-<!--<div id="mocha"></div>-->
-
-
-<script src="js/tests.js"></script>
-
-<!-- в этом скрипте находятся спеки -->
-<script src="js/specs.js"></script>
-
-
-<!-- запустить тесты! -->
-<script>
-    //    mocha.run();
-</script>
 
 
 <script src="js/libs/CSInterface.js"></script>
@@ -406,91 +302,7 @@
 <script src="js/main.js"></script>
 
 
-<script>
-    var expTitleGeneral = document.getElementsByClassName("exp-title")[0];
-    var expTitleText = document.getElementsByClassName("exp-title")[1];
-    var expTitleWhite = document.getElementsByClassName("exp-title")[2];
-    var expTitleOther = document.getElementsByClassName("exp-title")[3];
 
-    expTitleGeneral.addEventListener('click', function () {
-        $("#exp_content_general").toggleClass("hiddenElem");
-    });
-    expTitleText.addEventListener('click', function () {
-        $("#exp_content_text").toggleClass("hiddenElem");
-    });
-    expTitleWhite.addEventListener('click', function () {
-        $("#exp_content_white").toggleClass("hiddenElem");
-    });
-    expTitleOther.addEventListener('click', function () {
-        $("#exp_content_other").toggleClass("hiddenElem");
-    });
-
-    $("#form_general").sisyphus({customKeyPrefix: 'general'});
-    $("#form_text").sisyphus({customKeyPrefix: 'text'});
-    $("#form_white").sisyphus({customKeyPrefix: 'white'});
-    $("#form_other").sisyphus({customKeyPrefix: 'other'});
-
-    $("#btn_defaults_all").click(function () {
-        $("form").trigger('reset');
-    });
-    $("#btn_defaults_general").click(function () {
-        $("#form_general").trigger('reset');
-    });
-    $("#btn_defaults_text").click(function () {
-        $("#form_text").trigger('reset');
-    });
-    $("#btn_defaults_white").click(function () {
-        $("#form_white").trigger('reset');
-    });
-    $("#btn_defaults_white").click(function () {
-        $("#form_other").trigger('reset');
-    });
-
-    expTitleGeneral.setAttribute('title', getFormValues('general'));
-    expTitleText.setAttribute('title', getFormValues('text'));
-    expTitleWhite.setAttribute('title', getFormValues('white'));
-    expTitleOther.setAttribute('title', getFormValues('other'));
-
-    /* var inf_general = document.createElement('label');
-     var inf_text = document.createElement('label');
-     var inf_white = document.createElement('label');
-
-     inf_general.innerHTML = getFormValues('general');
-     expTitleGeneral.appendChild(inf_general);
-
-     inf_text.innerHTML = getFormValues('text');
-     expTitleText.appendChild(inf_text);
-
-     inf_white.innerHTML = getFormValues('white');
-     expTitleWhite.appendChild(inf_white);*/
-
-
-    function getFormValues(name) {
-        var result = [];
-        result.push($("#sel_color_model_" + name).find('option:selected').text());
-        result.push($("#nmb_quality_" + name).val());
-        result.push($("#sel_resolution_" + name).find('option:selected').text());
-        result.push($("#sel_compress_method_" + name).find('option:selected').text());
-        result.push($("#sel_antialias_" + name).find('option:selected').text());
-
-        if ($("#ch_use_artbs_" + name).prop('checked')) {
-            if ($("#rad_artbs_all_" + name).prop('checked')) {
-                result.push('All artboards');
-            } else {
-                result.push($("#txt_artbs_range_" + name).val());
-            }
-        }
-
-        /*result.push( $("#ch_use_artbs_" + name).prop('checked'));
-        result.push( $("#rad_artbs_all_" + name).prop('checked'));
-        result.push( $("#rad_artbs_range_" + name).prop('checked'));
-        result.push( $("#txt_artbs_range_" + name).val());*/
-        result.push($("#txt_postfix_" + name).val());
-        return result;
-    }
-
-
-</script>
 
 
 </body>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionManifest Version="4.0"
                    ExtensionBundleId="com.wk.ai_exp"
-                   ExtensionBundleVersion="0.2.0"
+                   ExtensionBundleVersion="0.3.0"
                    ExtensionBundleName="com.wk.ai_exp"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Author><![CDATA[Marat Shagiev]]></Author>
@@ -13,7 +13,8 @@
         ]]>
     </Abstract>
     <ExtensionList>
-        <Extension Id="com.wk.ai_exp" Version="0.1.0"/>
+        <Extension Id="com.wk.ai_exp.panel" Version="0.3.0"/>
+        <Extension Id="com.wk.ai_exp.dialog" Version="0.3.0"/>
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -27,7 +28,7 @@
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>
-        <Extension Id="com.wk.ai_exp">
+        <Extension Id="com.wk.ai_exp.panel">
             <DispatchInfo>
                 <Resources>
                     <MainPath>./index.html</MainPath>
@@ -38,20 +39,20 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>ai_exp_0.1.0</Menu>
+                    <Menu>ai_exp_0.3.0</Menu>
                     <Geometry>
                         <Size>
                             <Height>300</Height>
                             <Width>300</Width>
-                            <MinSize>
-                                <Height>300</Height>
-                                <Width>300</Width>
-                            </MinSize>
-                            <MaxSize>
-                                <Height>300</Height>
-                                <Width>300</Width>
-                            </MaxSize>
                         </Size>
+                        <MinSize>
+                            <Height>200</Height>
+                            <Width>200</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>800</Height>
+                            <Width>1000</Width>
+                        </MaxSize>
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./icons/base-01.png</Icon>
@@ -60,6 +61,36 @@
                         <Icon Type="DarkNormal">./icons/base-01.png</Icon>
                         <Icon Type="DarkRollOver">./icons/base-01.png</Icon>
                     </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+        <Extension Id="com.wk.ai_exp.dialog">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./dialog.html</MainPath>
+                    <CEFCommandLine>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>false</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>ModalDialog</Type>
+                    <Menu>ai_exp_dialog</Menu>
+                    <Geometry>
+                        <Size>
+                            <Height>1</Height>
+                            <Width>1</Width>
+                        </Size>
+                        <MinSize>
+                            <Height>1</Height>
+                            <Width>1</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>1</Height>
+                            <Width>1</Width>
+                        </MaxSize>
+                    </Geometry>
                 </UI>
             </DispatchInfo>
         </Extension>
