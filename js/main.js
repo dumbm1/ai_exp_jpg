@@ -61,6 +61,12 @@
       $("#form_other").trigger('reset');
     });
 
+    $(".btn-export").click(function () {
+      // alert(($(this).attr('id')).slice(11));
+      var opts = _getFormValToObj(($(this).attr('id')).slice(11));
+      new CSInterface().evalScript('ai_exp_jpg(' + JSON.stringify(opts) + ')');
+    })
+
     function addInfo() {
       expTitleGeneral.setAttribute('title', _getFormValues('general'));
       expTitleText.setAttribute('title', _getFormValues('text'));
@@ -101,17 +107,21 @@
     }
 
     function _getFormValToObj(name) {
-      var obj                 = {};
-      obj["Color Model"]      = ($("#sel_color_model_" + name).find('option:selected').text());
-      obj["Quality"]          = ($("#nmb_quality_" + name).val());
-      obj["Resolution"]       = ($("#sel_resolution_" + name).find('option:selected').text());
-      obj["Compression"]      = ($("#sel_compress_method_" + name).find('option:selected').text());
-      obj["Anti-aliasing"]    = ($("#sel_antialias_" + name).find('option:selected').text());
-      obj["Use artboards"]    = ($("#ch_use_artbs_" + name).prop('checked'));
-      obj["rad_artbs_all_"]   = ($("#rad_artbs_all_" + name).prop('checked'));
-      obj["rad_artbs_range_"] = ($("#rad_artbs_range_" + name).prop('checked'));
-      obj["txt_artbs_range_"] = ($("#txt_artbs_range_" + name).val());
-      obj["txt_postfix_"]     = ($("#txt_postfix_" + name).val());
+      name = name || 'general';
+
+      var obj                    = {};
+      obj["sel_color_model"]     = ($("#sel_color_model_" + name).find('option:selected').text());
+      obj["nmb_quality"]         = ($("#nmb_quality_" + name).val());
+      obj["sel_resolution"]      = ($("#sel_resolution_" + name).find('option:selected').text());
+      obj["sel_compress_method"] = ($("#sel_compress_method_" + name).find('option:selected').text());
+      obj["sel_scans"]           = ($("#sel_scans_" + name).find('option:selected').text());
+      obj["sel_anti_aliasing"]   = ($("#sel_antialias_" + name).find('option:selected').text());
+      obj["ch_use_artboards"]    = ($("#ch_use_artbs_" + name).prop('checked'));
+      obj["rad_artbs_all"]       = ($("#rad_artbs_all_" + name).prop('checked'));
+      obj["rad_artbs_range"]     = ($("#rad_artbs_range_" + name).prop('checked'));
+      obj["txt_artbs_range"]     = ($("#txt_artbs_range_" + name).val());
+      obj["txt_postfix"]         = ($("#txt_postfix_" + name).val());
+
       return obj;
     }
 

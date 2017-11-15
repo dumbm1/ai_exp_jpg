@@ -2,27 +2,98 @@
 /*global $, Folder*/
 
 
-function sendObjToHTML() {
-  return 'Goodbye, HTML!'
-}
+function ai_exp_jpg(o) {
+  var opts = processOpts(o);
 
-function ai_exp_jpg(opts) {
-  var str                       = ('' + activeDocument.fullName).slice(0, -3) + '.jpg',
+  function processOpts(opts) {
+
+    switch (opts.sel_color_model) {
+      case 'RGB':
+        opts.sel_color_model = '01';
+        break;
+      case 'CMYK':
+        opts.sel_color_model = '02';
+        break;
+      case 'Grayscale':
+      default:
+        opts.sel_color_model = '03';
+        break;
+    }
+    switch (opts.sel_anti_aliasing) {
+      case 'None':
+        opts.sel_anti_aliasing = '01';
+        break;
+      case 'Text Optimized (Hinted)':
+        opts.sel_anti_aliasing = '03';
+        break;
+      case 'Art Optimized (Supersampling)':
+      default:
+        opts.sel_anti_aliasing = '02';
+        break;
+    }
+    switch (opts.sel_compress_method) {
+      case 'Baseline Optimized':
+        opts.sel_compress_method = '02';
+        break;
+      case 'Progressive':
+        opts.sel_compress_method = '03';
+        break;
+      case 'Baseline (Standard)':
+      default:
+        opts.sel_compress_method = '01';
+        break;
+    }
+    switch (opts.ch_use_artboards) {
+      case true:
+        opts.ch_use_artboards = '1';
+        break;
+      case false:
+      default:
+        opts.ch_use_artboards = '0';
+        break;
+    }
+    switch (opts.rad_artbs_all) {
+      case true:
+        opts.rad_artbs_all = '1';
+        break;
+      case false:
+      default:
+        opts.rad_artbs_all = '0';
+        break;
+    }
+
+    return opts;
+  }
+
+
+  var jpgFolder = new Folder('' + activeDocument.path + '/jpg/');
+  if (!jpgFolder.exists)jpgFolder.create();
+
+  var str                       = ('' + activeDocument.path + '/jpg/' + activeDocument.name).slice(0, -3) + opts.txt_postfix + '.jpg',
       str_compatible            = encodeStrToAnsii(new File(str).fsName),
 
-      useArtboards              = '1',
-      allArtboards              = '1',
-      artboardsRange            = '2',
+      useArtboards              = opts.ch_use_artboards/* || '1'*/,
+      allArtboards              = opts.rad_artbs_all /*|| '0'*/,
+      artboardsRange            = opts.txt_artbs_range || '1' || prompt('Artboard range', '2-3'),
       artboardsRange_compatible = encodeStrToAnsii(artboardsRange),
 
-      res                       = 300,
-      resCompatible             = res.toString(16).slice(1) + '0' + res.toString(16).slice(0, 1),
+      res                       = +opts.sel_resolution || 250,
+      // resCompatible             = 'fa00', // 250 fa ; 300 12c ;
+      resCompatible             = res.toString(16),
 
-      quality                   = 6,
+      quality                   = +opts.nmb_quality /*|| 6*/,
       quality_compatible        = '0' + quality.toString(16),
-      compressionMethod         = '01',
-      scans                     = '03',
-      antiAliasing              = '02';
+      compressionMethod         = opts.sel_compress_method /*|| '01'*/,
+      scans                     = opts.sel_scans /*|| '03'*/,
+      antiAliasing              = opts.sel_anti_aliasing /*|| '02'*/,
+      colorModel                = opts.sel_color_model /*|| '01'*/; // color models 01 - RGB, 02 - CMYK, 03 - Grayscale
+
+  if (resCompatible.length < 3) {
+    resCompatible = res.toString(16) + '00';
+  } else {
+    resCompatible = res.toString(16).slice(1) + '0' + res.toString(16).slice(0, 1)
+  }
+
 
   try {
     if (!new File(activeDocument.fullName).exists) {
@@ -35,16 +106,16 @@ function ai_exp_jpg(opts) {
 
   var actStr1 = "/version 3" + "/name [ 8" + " 536574204e616d65" + "]" + "/isOpen 1" + "/actionCount 1" + "/action-1 {" + " /name [ 11" + " 416374696f6e204e616d65" + " ]" + " /keyIndex 0" + " /colorIndex 0" + " /isOpen 1" + " /eventCount 1" + " /event-1 {" + " /useRulersIn1stQuadrant 0" + " /internalName (adobe_exportDocument)" + " /localizedName [ 6" + " 4578706f7274" + " ]" + " /isOpen 0" + " /isOn 1" + " /hasDialog 1" + " /showDialog 0" + " /parameterCount 7" + " /parameter-1 {" + " /key 1885434477" + " /showInPalette 0" + " /type (raw)" + " /value < 104" +
     " " +
-    "06" + // quality in hex from 01 to 0a
+    quality_compatible + // quality in hex from 01 to 0a
     "000000" +
-    "01" + // compression methods
+    compressionMethod + // compression methods
     "000000" +
-    "03" + // number of scans, when progressive compression: from 03 to 05
+    scans + // number of scans, when progressive compression: from 03 to 05
     "000000" +
-    "01" + // anti-aliasing
+    antiAliasing + // anti-aliasing
     "0000000000" +
-    "3402" + // resolution: reverse pairs 012c is a 300 dpi in hex, max 564 dpi
-    "01" + // color models 01 - RGB, 02 - CMYK, 03 - Grayscale
+    resCompatible + // resolution: reverse pairs 012c is a 300 dpi in hex, max 564 dpi
+    colorModel + // color models 01 - RGB, 02 - CMYK, 03 - Grayscale
     "0000000000000001000000" +
     " 0000000000000000000000000000000000000000000000000000000000000000" +
     " 0000000000000000000000000000000000000000000000000000000000000000" +
@@ -97,4 +168,3 @@ function ai_exp_jpg(opts) {
     return result;
   }
 }
-
