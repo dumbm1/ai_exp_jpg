@@ -81,14 +81,29 @@ input[type=text] {
     float: right;
 }
 
-.exp-title {
-    background: rgba(0, 0, 0, .2);
+.title-bg {
+    /*background: rgba(0, 0, 0, .2);*/
+    background: linear-gradient(0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0.1));
     width: 100%;
     height: 25px;
+    /*display: inline-block;*/
+    /*margin-bottom: 2px;*/
+}
+.title-bg:hover{
+    cursor: pointer;
+    background: linear-gradient(0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0));
+}
+
+.exp-title {
+    /*background: rgba(0, 0, 0, .2);*/
+    /*width: 300px;*/
+    /*width: 80%;*/
+    height: 25px;
+    display: inline-block;
 }
 
 .exp-title label {
-    display: /*inline-*/block;
+    display: /*inline-*/ block;
     margin: 3px 0 0 5px;
     cursor: pointer;
 }
@@ -102,9 +117,11 @@ input[type=text] {
 }
 
 .btn-export {
-    display: block;
-    margin: 1px auto;
-    width: 99%;
+    display: inline-block;
+    float: right;
+    /*width: 19%;*/
+    /*margin: 1px auto;*/
+    /*width: 99%;*/
 }
 
 .line {

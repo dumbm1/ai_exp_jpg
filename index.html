@@ -10,7 +10,6 @@
     <style type="text/css">
 
 
-
     </style>
 </head>
 
@@ -19,7 +18,10 @@
 <div id="content">
 
     <div id="export_sets" class="export-set">
-        <div class="exp-title"><label>General</label></div>
+        <div class="title-bg">
+            <div class="exp-title"><label>General</label></div>
+            <input type="button" id="btn_export_general" class="hostButton btn-export" value="Export"/>
+        </div>
         <form id="form_general">
             <div id="exp_content_general" class="exp-content hiddenElem">
                 <div class="line">
@@ -87,9 +89,11 @@
                     <input type="button" id="btn_defaults_general" class="hostButton" value="Defaults"/>
                 </div>
             </div>
-            <input type="button" id="btn_export_general" class="hostButton btn-export" value="Export"/>
         </form>
-        <div class="exp-title"><label>Text</label></div>
+        <div class="title-bg">
+            <div class="exp-title"><label>Text</label></div>
+            <input type="button" id="btn_export_text" class="hostButton btn-export" value="Export"/>
+        </div>
         <form id="form_text">
             <div id="exp_content_text" class="exp-content hiddenElem">
                 <div class="line">
@@ -157,9 +161,12 @@
                     <input type="button" id="btn_defaults_text" class="hostButton" value="Defaults"/>
                 </div>
             </div>
-            <input type="button" id="btn_export_text" class="hostButton btn-export" value="Export"/>
+
         </form>
-        <div class="exp-title"><label>White</label></div>
+        <div class="title-bg">
+            <div class="exp-title"><label>White</label></div>
+            <input type="button" id="btn_export_white" class="hostButton btn-export" value="Export"/>
+        </div>
         <form id="form_white">
             <div id="exp_content_white" class="exp-content hiddenElem">
                 <div class="line">
@@ -227,9 +234,11 @@
                     <input type="button" id="btn_defaults_white" class="hostButton" value="Defaults"/>
                 </div>
             </div>
-            <input type="button" id="btn_export_white" class="hostButton btn-export" value="Export"/>
         </form>
-        <div class="exp-title"><label>Other</label></div>
+        <div class="title-bg">
+            <div class="exp-title"><label>Other</label></div>
+            <input type="button" id="btn_export_other" class="hostButton btn-export" value="Export"/>
+        </div>
         <form id="form_other">
             <div id="exp_content_other" class="exp-content hiddenElem">
                 <div class="line">
@@ -297,7 +306,7 @@
                     <input type="button" id="btn_defaults_other" class="hostButton" value="Defaults"/>
                 </div>
             </div>
-            <input type="button" id="btn_export_other" class="hostButton btn-export" value="Export"/>
+
         </form>
     </div>
 
@@ -324,9 +333,6 @@
 
 <script src="js/themeManager.js"></script>
 <script src="js/main.js"></script>
-
-
-
 
 
 </body>
