@@ -40,6 +40,10 @@
       $("#exp_content_other").toggleClass("hiddenElem");
     });
 
+    $(".title-bg").click(function (e) {
+      var formName = e.target.nextElementSibling.getAttribute("id").slice(5);
+    })
+
     $("#form_general").sisyphus({customKeyPrefix: 'general'});
     $("#form_text").sisyphus({customKeyPrefix: 'text'});
     $("#form_white").sisyphus({customKeyPrefix: 'white'});
