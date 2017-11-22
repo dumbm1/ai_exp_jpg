@@ -40,8 +40,13 @@
       $("#exp_content_other").toggleClass("hiddenElem");
     });
 
+    $(".exp-title").click(function (e) {
+      var formName = e.target.parent.nextElementSibling.getAttribute("id").slice(5);
+      $("#exp_content_" + formName).toggleClass("hiddenElem");
+    })
     $(".title-bg").click(function (e) {
       var formName = e.target.nextElementSibling.getAttribute("id").slice(5);
+      $("#exp_content_" + formName).toggleClass("hiddenElem");
     })
 
     $("#form_general").sisyphus({customKeyPrefix: 'general'});
