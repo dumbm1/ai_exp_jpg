@@ -64,7 +64,7 @@
     $('#btn_defaults_white').click(function () {
       $('#form_white').trigger('reset');
     });
-    $('#btn_defaults_white').click(function () {
+    $('#btn_defaults_other').click(function () {
       $('#form_other').trigger('reset');
     });
 
