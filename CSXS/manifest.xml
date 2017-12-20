@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionManifest Version="4.0"
                    ExtensionBundleId="com.wk.ai_exp"
-                   ExtensionBundleVersion="0.5.1"
+                   ExtensionBundleVersion="0.5.2"
                    ExtensionBundleName="ai_exp"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Author><![CDATA[Marat Shagiev]]></Author>
@@ -13,8 +13,8 @@
         ]]>
     </Abstract>
     <ExtensionList>
-        <Extension Id="com.wk.ai_exp.panel" Version="0.5.1"/>
-        <Extension Id="com.wk.ai_exp.dialog" Version="0.5.1"/>
+        <Extension Id="com.wk.ai_exp.panel" Version="0.5.2"/>
+        <Extension Id="com.wk.ai_exp.dialog" Version="0.5.2"/>
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -39,19 +39,19 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>ai_exp_0.5.1</Menu>
+                    <Menu>ai_exp_0.5.2</Menu>
                     <Geometry>
                         <Size>
-                            <Height>400</Height>
+                            <Height>260</Height>
                             <Width>400</Width>
                         </Size>
                         <MinSize>
-                            <Height>350</Height>
+                            <Height>240</Height>
                             <Width>350</Width>
                         </MinSize>
                         <MaxSize>
                             <Height>1200</Height>
-                            <Width>1200</Width>
+                            <Width>800</Width>
                         </MaxSize>
                     </Geometry>
                     <Icons>
