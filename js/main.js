@@ -3,10 +3,12 @@
 
 (function () {
   'use strict';
+  var FIT_WIN_TIMEOUT = 100;
   var csInterface = new CSInterface();
   init();
 
   function init() {
+
 
     themeManager.init();
     loadJSX('hostscript.jsx');
@@ -28,24 +30,50 @@
 
       setTimeout(function () {
         fitWindowToContent();
-      }, 100);
+      }, FIT_WIN_TIMEOUT);
     });
 
-    $('.exp-title').click(function () {
-      //todo: I'm don't know, why 'e.target' don't work which work in next handler...
-      var formName = this.parentElement.nextElementSibling.getAttribute('id').slice(5);
-      $('#exp_content_' + formName).toggleClass('hiddenElem');
-      setTimeout(function () {
-        fitWindowToContent();
-      }, 100);
+    $('#export_sets').click(function (e) {
+      var formName;
+      // alert($(e.target).hasClass('title-bg'));
+   /*         alert(
+       '$(e.target): ' + $(e.target) + ',  ' + $(e.target).attr('id') + ',  ' + $(e.target).attr('class') + '\n' +
+       'this: ' + this + ',  ' + this.getAttribute('id') + ',  ' + this.getAttribute('class') + '\n' +
+       '$(this): ' + $(this) + ',  ' + $(this).attr('id') + ',  ' + this.getAttribute('class')
+       );*/
+      if ($(e.target).hasClass('label-title')) {
+        formName = e.target.parentElement.parentElement.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+      }
+      if ($(e.target).hasClass('title-bg')) {
+        formName = e.target.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+      }
+      
+
     });
-    $('.title-bg').click(function (e) {
-      var formName = e.target.nextElementSibling.getAttribute('id').slice(5);
-      $('#exp_content_' + formName).toggleClass('hiddenElem');
-      setTimeout(function () {
-        fitWindowToContent();
-      }, 100);
-    });
+
+    /*    $('.exp-title').click(function () {
+     //todo: I'm don't know, why 'e.target' don't work which work in next handler...
+     var formName = this.parentElement.nextElementSibling.getAttribute('id').slice(5);
+     $('#exp_content_' + formName).toggleClass('hiddenElem');
+     setTimeout(function () {
+     fitWindowToContent();
+     }, 100);
+     });
+     $('.title-bg').click(function (e) {
+     var formName = e.target.nextElementSibling.getAttribute('id').slice(5);
+     $('#exp_content_' + formName).toggleClass('hiddenElem');
+     setTimeout(function () {
+     fitWindowToContent();
+     }, 100);
+     });*/
 
     $('#form_general').sisyphus({customKeyPrefix: 'general'});
     $('#form_text').sisyphus({customKeyPrefix: 'text'});
