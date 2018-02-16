@@ -30,7 +30,6 @@
         fitWindowToContent();
       }, 100);
     });
-
     $('.exp-title').click(function () {
       //todo: I'm don't know, why 'e.target' don't work which work in next handler...
       var formName = this.parentElement.nextElementSibling.getAttribute('id').slice(5);
@@ -75,7 +74,6 @@
     });
 
     $('#btn_reloadHtml').click(reloadPanel);
-
     $('#btn_reloadJsx').click(function () {
       new CSInterface().requestOpenExtension('com.wk.ai_exp.dialog');
       new CSInterface().closeExtension();
@@ -91,7 +89,10 @@
                                 bodyHorzMargin, Math.floor($('#content').innerHeight()) + bodyVertMargin);
     }
   }
-
+  /**
+   * @param {String} the name of export set that a part of id of the set
+   * @return {Object} - obj that receved to jsx function ai_exp_jpg
+   * */
   function getFormValToObj(name) {
     name = name || 'general';
 
