@@ -9,7 +9,6 @@
 
   function init() {
 
-
     themeManager.init();
     loadJSX('hostscript.jsx');
     loadJSX('json2.js');
@@ -32,15 +31,12 @@
         fitWindowToContent();
       }, FIT_WIN_TIMEOUT);
     });
-
+    /**
+     * event delegation
+     * */
     $('#export_sets').click(function (e) {
       var formName;
-      // alert($(e.target).hasClass('title-bg'));
-   /*         alert(
-       '$(e.target): ' + $(e.target) + ',  ' + $(e.target).attr('id') + ',  ' + $(e.target).attr('class') + '\n' +
-       'this: ' + this + ',  ' + this.getAttribute('id') + ',  ' + this.getAttribute('class') + '\n' +
-       '$(this): ' + $(this) + ',  ' + $(this).attr('id') + ',  ' + this.getAttribute('class')
-       );*/
+
       if ($(e.target).hasClass('label-title')) {
         formName = e.target.parentElement.parentElement.nextElementSibling.getAttribute('id').slice(5);
         $('#exp_content_' + formName).toggleClass('hiddenElem');
@@ -55,25 +51,8 @@
           fitWindowToContent();
         }, FIT_WIN_TIMEOUT);
       }
-      
 
     });
-
-    /*    $('.exp-title').click(function () {
-     //todo: I'm don't know, why 'e.target' don't work which work in next handler...
-     var formName = this.parentElement.nextElementSibling.getAttribute('id').slice(5);
-     $('#exp_content_' + formName).toggleClass('hiddenElem');
-     setTimeout(function () {
-     fitWindowToContent();
-     }, 100);
-     });
-     $('.title-bg').click(function (e) {
-     var formName = e.target.nextElementSibling.getAttribute('id').slice(5);
-     $('#exp_content_' + formName).toggleClass('hiddenElem');
-     setTimeout(function () {
-     fitWindowToContent();
-     }, 100);
-     });*/
 
     $('#form_general').sisyphus({customKeyPrefix: 'general'});
     $('#form_text').sisyphus({customKeyPrefix: 'text'});
@@ -81,6 +60,7 @@
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
 
     $('#btn_defaults_all').click(function () {
+      if (!confirm('Вы уверены, что хотите сбросить все настройки?')) return;
       $('form').trigger('reset');
     });
     $('#btn_defaults_general').click(function () {
@@ -104,20 +84,23 @@
 
     $('#btn_reloadHtml').click(reloadPanel);
 
-    $('#btn_reloadJsx').click(function () {
+   /* $('#btn_reloadJsx').click(function () {
       new CSInterface().requestOpenExtension('com.wk.ai_exp.dialog');
       new CSInterface().closeExtension();
-    });
+    });*/
   }
 
   function fitWindowToContent() {
-    if (typeof csInterface.resizeContent != 'undefined') {
+    /*if (typeof csInterface.resizeContent != 'undefined') {
       var bodyVertMargin = parseInt($('body').css('marginTop')) + parseInt($('body').css('marginBottom'));
       var bodyHorzMargin = parseInt($('body').css('marginLeft')) + parseInt($('body').css('marginRight'));
       // console.log("Width: " + $("#extension-panel").width() + ", Height: " + Math.floor($("#extension-panel").innerHeight()));
       csInterface.resizeContent($('#content').width() +
                                 bodyHorzMargin, Math.floor($('#content').innerHeight()) + bodyVertMargin);
-    }
+    }*/
+    setTimeout(function () {
+     csInterface.resizeContent(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
+     }, 100);
   }
 
   function getFormValToObj(name) {
