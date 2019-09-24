@@ -1,9 +1,6 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global $, Folder*/
-
-
 function ai_exp_jpg(o) {
   var opts = processOpts(o);
+  var folderName = opts.folderName;
 
   function processOpts(opts) {
 
@@ -65,11 +62,10 @@ function ai_exp_jpg(o) {
     return opts;
   }
 
+  var jpgFolder = new Folder('' + activeDocument.path + '/' + folderName + '/');
+  if (!jpgFolder.exists) jpgFolder.create();
 
-  var jpgFolder = new Folder('' + activeDocument.path + '/jpg/');
-  if (!jpgFolder.exists)jpgFolder.create();
-
-  var str                       = ('' + activeDocument.path + '/jpg/' + activeDocument.name).slice(0, -3) + opts.txt_postfix + '.jpg',
+  var str                       = ('' + activeDocument.path + '/' + folderName + '/' + activeDocument.name).slice(0, -3) + opts.txt_postfix + '.jpg',
       str_compatible            = encodeStrToAnsii(new File(str).fsName),
 
       useArtboards              = opts.ch_use_artboards/* || '1'*/,
@@ -91,56 +87,55 @@ function ai_exp_jpg(o) {
   if (resCompatible.length < 3) {
     resCompatible = res.toString(16) + '00';
   } else {
-    resCompatible = res.toString(16).slice(1) + '0' + res.toString(16).slice(0, 1)
+    resCompatible = res.toString(16).slice(1) + '0' + res.toString(16).slice(0, 1);
   }
-
 
   try {
     if (!new File(activeDocument.fullName).exists) {
-      throw new Error("The file doesn't exists\nSave the file and try again");
+      throw new Error('The file doesn\'t exists\nSave the file and try again');
       return;
     }
   } catch (e) {
     alert(e.message);
   }
 
-  var actStr1 = "/version 3" + "/name [ 8" + " 536574204e616d65" + "]" + "/isOpen 1" + "/actionCount 1" + "/action-1 {" + " /name [ 11" + " 416374696f6e204e616d65" + " ]" + " /keyIndex 0" + " /colorIndex 0" + " /isOpen 1" + " /eventCount 1" + " /event-1 {" + " /useRulersIn1stQuadrant 0" + " /internalName (adobe_exportDocument)" + " /localizedName [ 6" + " 4578706f7274" + " ]" + " /isOpen 0" + " /isOn 1" + " /hasDialog 1" + " /showDialog 0" + " /parameterCount 7" + " /parameter-1 {" + " /key 1885434477" + " /showInPalette 0" + " /type (raw)" + " /value < 104" +
-    " " +
-    quality_compatible + // quality in hex from 01 to 0a
-    "000000" +
-    compressionMethod + // compression methods
-    "000000" +
-    scans + // number of scans, when progressive compression: from 03 to 05
-    "000000" +
-    antiAliasing + // anti-aliasing
-    "0000000000" +
-    resCompatible + // resolution: reverse pairs 012c is a 300 dpi in hex, max 564 dpi
-    colorModel + // color models 01 - RGB, 02 - CMYK, 03 - Grayscale
-    "0000000000000001000000" +
-    " 0000000000000000000000000000000000000000000000000000000000000000" +
-    " 0000000000000000000000000000000000000000000000000000000000000000" +
-    " 0000000001000000" + // color profile, when RGB or CMYK
-    " >" + " /size 104" + " }" +
-    " /parameter-2 {" + // jpg file name
-    " /key 1851878757" + " /showInPalette -1" + " /type (ustring)" +
-    " /value [ " + str_compatible.length / 2 + "" + // string length
-    "               " + str_compatible +
-    " ]" + " }" + " /parameter-3 {" + " /key 1718775156" + " /showInPalette -1" + " /type (ustring)" + " /value [ 16" + " 4a5045472066696c6520666f726d6174" + " ]" + " }" + " /parameter-4 {" + " /key 1702392942" + " /showInPalette -1" + " /type (ustring)" + " /value [ 12" + " 6a70672c6a70652c6a706567" + " ]" + " }" +
-    " /parameter-5 {" + // use artboards
-    " /key 1936548194" + " /showInPalette -1" + " /type (boolean)" +
-    " /value " + useArtboards +
-    " }" +
-    " /parameter-6 {" + // all artboards
-    " /key 1935764588" + " /showInPalette -1" + " /type (boolean)" +
-    " /value " + allArtboards +
-    " }" +
-    " /parameter-7 {" + // artboards range
-    " /key 1936875886" + " /showInPalette -1" + " /type (ustring)" +
-    " /value [ " + artboardsRange_compatible.length / 2 +
-    " " + artboardsRange_compatible +
-    " ]" + " }" + " }" + "}";
+  var actStr1 = '/version 3' + '/name [ 8' + ' 536574204e616d65' + ']' + '/isOpen 1' + '/actionCount 1' + '/action-1 {' + ' /name [ 11' + ' 416374696f6e204e616d65' + ' ]' + ' /keyIndex 0' + ' /colorIndex 0' + ' /isOpen 1' + ' /eventCount 1' + ' /event-1 {' + ' /useRulersIn1stQuadrant 0' + ' /internalName (adobe_exportDocument)' + ' /localizedName [ 6' + ' 4578706f7274' + ' ]' + ' /isOpen 0' + ' /isOn 1' + ' /hasDialog 1' + ' /showDialog 0' + ' /parameterCount 7' + ' /parameter-1 {' + ' /key 1885434477' + ' /showInPalette 0' + ' /type (raw)' + ' /value < 104' +
+                ' ' +
+                quality_compatible + // quality in hex from 01 to 0a
+                '000000' +
+                compressionMethod + // compression methods
+                '000000' +
+                scans + // number of scans, when progressive compression: from 03 to 05
+                '000000' +
+                antiAliasing + // anti-aliasing
+                '0000000000' +
+                resCompatible + // resolution: reverse pairs 012c is a 300 dpi in hex, max 564 dpi
+                colorModel + // color models 01 - RGB, 02 - CMYK, 03 - Grayscale
+                '0000000000000001000000' +
+                ' 0000000000000000000000000000000000000000000000000000000000000000' +
+                ' 0000000000000000000000000000000000000000000000000000000000000000' +
+                ' 0000000001000000' + // color profile, when RGB or CMYK
+                ' >' + ' /size 104' + ' }' +
+                ' /parameter-2 {' + // jpg file name
+                ' /key 1851878757' + ' /showInPalette -1' + ' /type (ustring)' +
+                ' /value [ ' + str_compatible.length / 2 + '' + // string length
+                '               ' + str_compatible +
+                ' ]' + ' }' + ' /parameter-3 {' + ' /key 1718775156' + ' /showInPalette -1' + ' /type (ustring)' + ' /value [ 16' + ' 4a5045472066696c6520666f726d6174' + ' ]' + ' }' + ' /parameter-4 {' + ' /key 1702392942' + ' /showInPalette -1' + ' /type (ustring)' + ' /value [ 12' + ' 6a70672c6a70652c6a706567' + ' ]' + ' }' +
+                ' /parameter-5 {' + // use artboards
+                ' /key 1936548194' + ' /showInPalette -1' + ' /type (boolean)' +
+                ' /value ' + useArtboards +
+                ' }' +
+                ' /parameter-6 {' + // all artboards
+                ' /key 1935764588' + ' /showInPalette -1' + ' /type (boolean)' +
+                ' /value ' + allArtboards +
+                ' }' +
+                ' /parameter-7 {' + // artboards range
+                ' /key 1936875886' + ' /showInPalette -1' + ' /type (ustring)' +
+                ' /value [ ' + artboardsRange_compatible.length / 2 +
+                ' ' + artboardsRange_compatible +
+                ' ]' + ' }' + ' }' + '}';
 
-  runAction(actStr1, "Action Name", "Set Name");
+  runAction(actStr1, 'Action Name', 'Set Name');
 
   function runAction(aiActionString, aiActionName, aiActionSetName) {
     var f = new File('~/ScriptAction.aia');
@@ -151,14 +146,14 @@ function ai_exp_jpg(o) {
     f.remove();
 
     app.doScript(aiActionName, aiActionSetName, false); // action name, set name
-    app.unloadAction(aiActionSetName, ""); // set name
+    app.unloadAction(aiActionSetName, ''); // set name
   }
 
   function encodeStrToAnsii(str) {
     var result = '';
     for (var i = 0; i < str.length; i++) {
       var chr = File.encode(str[i]);
-      chr     = chr.replace(/%/gmi, '');
+      chr = chr.replace(/%/gmi, '');
       if (chr.length == 1) {
         result += chr.charCodeAt(0).toString(16);
       } else {

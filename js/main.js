@@ -1,6 +1,3 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global $, window, location, CSInterface, SystemPath, themeManager*/
-
 (function () {
   'use strict';
   var FIT_WIN_TIMEOUT = 100;
@@ -58,6 +55,7 @@
     $('#form_text').sisyphus({customKeyPrefix: 'text'});
     $('#form_white').sisyphus({customKeyPrefix: 'white'});
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
+    $('#form_folderName').sisyphus();
 
     $('#btn_defaults_all').click(function () {
       if (!confirm('Вы уверены, что хотите сбросить все настройки?')) return;
@@ -79,28 +77,17 @@
     $('.btn-export').click(function () {
       // alert(($(this).attr('id')).slice(11));
       var opts = getFormValToObj(($(this).attr('id')).slice(11));
+      opts.folderName = document.getElementById('txt_folderName').value;
       new CSInterface().evalScript('ai_exp_jpg(' + JSON.stringify(opts) + ')');
     });
 
     $('#btn_reloadHtml').click(reloadPanel);
-
-   /* $('#btn_reloadJsx').click(function () {
-      new CSInterface().requestOpenExtension('com.wk.ai_exp.dialog');
-      new CSInterface().closeExtension();
-    });*/
   }
 
   function fitWindowToContent() {
-    /*if (typeof csInterface.resizeContent != 'undefined') {
-      var bodyVertMargin = parseInt($('body').css('marginTop')) + parseInt($('body').css('marginBottom'));
-      var bodyHorzMargin = parseInt($('body').css('marginLeft')) + parseInt($('body').css('marginRight'));
-      // console.log("Width: " + $("#extension-panel").width() + ", Height: " + Math.floor($("#extension-panel").innerHeight()));
-      csInterface.resizeContent($('#content').width() +
-                                bodyHorzMargin, Math.floor($('#content').innerHeight()) + bodyVertMargin);
-    }*/
     setTimeout(function () {
-     csInterface.resizeContent(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
-     }, 100);
+      csInterface.resizeContent(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
+    }, 100);
   }
 
   function getFormValToObj(name) {
