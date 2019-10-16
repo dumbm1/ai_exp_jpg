@@ -36,7 +36,7 @@
           <label for="sel_resolution_general">Resolution:</label>
           <select id="sel_resolution_general" class="hostTextarea">
             <option>72</option>
-            <option>150</option>
+            <option selected>150</option>
             <option>200</option>
             <option>250</option>
             <option>300</option>
@@ -65,19 +65,19 @@
           <label for="sel_antialias_general">Anti-aliasing:</label>
           <select id="sel_antialias_general" class="hostTextarea">
             <option>None</option>
-            <option>Art Optimized (Supersampling)</option>
+            <option selected>Art Optimized (Supersampling)</option>
             <option>Text Optimized (Hinted)</option>
           </select>
         </div>
         <div id="artbs_general" class="line">
-          <input type="checkbox" value="Use artboards" id="ch_use_artbs_general">
+          <input type="checkbox" value="Use artboards" id="ch_use_artbs_general" checked>
           <label for="ch_use_artbs_general">Use Artboards</label>
-          <input type="radio" id="rad_artbs_all_general" name="choose_artbs" checked>
+          <input type="radio" id="rad_artbs_all_general" name="choose_artbs">
           <label for="rad_artbs_all_general">All</label>
-          <input type="radio" id="rad_artbs_range_general" name="choose_artbs">
+          <input type="radio" id="rad_artbs_range_general" name="choose_artbs" checked>
           <label for="rad_artbs_range_general">Range</label>
           <label for="txt_artbs_range_general"></label>
-          <input type="text" id="txt_artbs_range_general" class="hostTextarea" value="2-3">
+          <input type="text" id="txt_artbs_range_general" class="hostTextarea" value="2">
         </div>
         <div id="postfix_general" class="line">
           <label for="txt_postfix_general">Postfix Label:</label>
@@ -89,6 +89,7 @@
         </div>
       </div>
     </form>
+
     <div class="title-bg">
       <div class="exp-title"><label class="label-title">Text</label></div>
       <input type="button" id="btn_export_text" class="hostButton btn-export" value="Export"/>
@@ -100,7 +101,7 @@
           <select id="sel_color_model_text" class="hostTextarea">
             <option>RGB</option>
             <option>CMYK</option>
-            <option>Grayscale</option>
+            <option selected>Grayscale</option>
           </select>
           <label for="nmb_quality_text">Quality:</label>
           <input type="number" id="nmb_quality_text" class="hostTextarea" min="1" max="10" step="1"
@@ -111,7 +112,7 @@
             <option>150</option>
             <option>200</option>
             <option>250</option>
-            <option>300</option>
+            <option selected>300</option>
             <option>350</option>
             <option>400</option>
             <option>450</option>
@@ -138,7 +139,7 @@
           <select id="sel_antialias_text" class="hostTextarea">
             <option>None</option>
             <option>Art Optimized (Supersampling)</option>
-            <option>Text Optimized (Hinted)</option>
+            <option selected>Text Optimized (Hinted)</option>
           </select>
         </div>
         <div id="artbs_text" class="line">
@@ -153,7 +154,7 @@
         </div>
         <div id="postfix_text" class="line">
           <label for="txt_postfix_text">Postfix Label:</label>
-          <input type="text" id="txt_postfix_text" class="hostTextarea" value=""
+          <input type="text" id="txt_postfix_text" class="hostTextarea" value="_TXT"
                  placeholder="" width="200px">
         </div>
         <div id="btns_text" class="line">
@@ -162,6 +163,7 @@
       </div>
 
     </form>
+
     <div class="title-bg">
       <div class="exp-title"><label class="label-title">White</label></div>
       <input type="button" id="btn_export_white" class="hostButton btn-export" value="Export"/>
@@ -181,7 +183,7 @@
           <label for="sel_resolution_white">Resolution:</label>
           <select id="sel_resolution_white" class="hostTextarea">
             <option>72</option>
-            <option>150</option>
+            <option selected>150</option>
             <option>200</option>
             <option>250</option>
             <option>300</option>
@@ -210,23 +212,23 @@
           <label for="sel_antialias_white">Anti-aliasing:</label>
           <select id="sel_antialias_white" class="hostTextarea">
             <option>None</option>
-            <option>Art Optimized (Supersampling)</option>
+            <option selected>Art Optimized (Supersampling)</option>
             <option>Text Optimized (Hinted)</option>
           </select>
         </div>
         <div id="artbs_white" class="line">
-          <input type="checkbox" value="Use artboards" id="ch_use_artbs_white">
+          <input type="checkbox" value="Use artboards" id="ch_use_artbs_white" checked>
           <label for="ch_use_artbs_white">Use Artboards</label>
-          <input type="radio" id="rad_artbs_all_white" name="choose_artbs" checked>
+          <input type="radio" id="rad_artbs_all_white" name="choose_artbs">
           <label for="rad_artbs_all_white">All</label>
-          <input type="radio" id="rad_artbs_range_white" name="choose_artbs">
+          <input type="radio" id="rad_artbs_range_white" name="choose_artbs" checked>
           <label for="rad_artbs_range_white">Range</label>
           <label for="txt_artbs_range_white"></label>
-          <input type="text" id="txt_artbs_range_white" class="hostTextarea" value="">
+          <input type="text" id="txt_artbs_range_white" class="hostTextarea" value="2">
         </div>
         <div id="postfix_white" class="line">
           <label for="txt_postfix_white">Postfix Label:</label>
-          <input type="text" id="txt_postfix_white" class="hostTextarea" value=""
+          <input type="text" id="txt_postfix_white" class="hostTextarea" value="_W"
                  placeholder="" width="200px">
         </div>
         <div id="btns_white" class="line">
@@ -234,6 +236,7 @@
         </div>
       </div>
     </form>
+
     <div class="title-bg">
       <div class="exp-title"><label class="label-title">Other</label></div>
       <input type="button" id="btn_export_other" class="hostButton btn-export" value="Export"/>
@@ -256,7 +259,7 @@
             <option>150</option>
             <option>200</option>
             <option>250</option>
-            <option>300</option>
+            <option selected>300</option>
             <option>350</option>
             <option>400</option>
             <option>450</option>
@@ -282,19 +285,19 @@
           <label for="sel_antialias_other">Anti-aliasing:</label>
           <select id="sel_antialias_other" class="hostTextarea">
             <option>None</option>
-            <option>Art Optimized (Supersampling)</option>
+            <option selected>Art Optimized (Supersampling)</option>
             <option>Text Optimized (Hinted)</option>
           </select>
         </div>
         <div id="artbs_other" class="line">
-          <input type="checkbox" value="Use artboards" id="ch_use_artbs_other">
+          <input type="checkbox" value="Use artboards" id="ch_use_artbs_other" checked>
           <label for="ch_use_artbs_other">Use Artboards</label>
-          <input type="radio" id="rad_artbs_all_other" name="choose_artbs" checked>
+          <input type="radio" id="rad_artbs_all_other" name="choose_artbs">
           <label for="rad_artbs_all_other">All</label>
-          <input type="radio" id="rad_artbs_range_other" name="choose_artbs">
+          <input type="radio" id="rad_artbs_range_other" name="choose_artbs" checked>
           <label for="rad_artbs_range_other">Range</label>
           <label for="txt_artbs_range_other"></label>
-          <input type="text" id="txt_artbs_range_other" class="hostTextarea" value="">
+          <input type="text" id="txt_artbs_range_other" class="hostTextarea" value="3">
         </div>
         <div id="postfix_other" class="line">
           <label for="txt_postfix_other">Postfix Label:</label>
