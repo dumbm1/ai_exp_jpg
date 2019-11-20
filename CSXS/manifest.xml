@@ -42,12 +42,12 @@
                     <Menu>ai_exp_0.5.3</Menu>
                     <Geometry>
                         <Size>
-                            <Height>260</Height>
-                            <Width>400</Width>
+                            <Height>210</Height>
+                            <Width>340</Width>
                         </Size>
                         <MinSize>
-                            <Height>220</Height>
-                            <Width>370</Width>
+                            <Height>100</Height>
+                            <Width>340</Width>
                         </MinSize>
                         <MaxSize>
                             <Height>1200</Height>

@@ -1,8 +1,6 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global $, window, location, CSInterface, SystemPath, themeManager*/
-
 (function () {
   'use strict';
+  var FIT_WIN_TIMEOUT = 100;
   var csInterface = new CSInterface();
   init();
 
@@ -13,14 +11,14 @@
     loadJSX('json2.js');
 
     jQuery.fn.extend({
-                       disableSelection: function () {
-                         this.each(function () {
-                           this.onselectstart = function () {
-                             return false;
-                           };
-                         });
-                       }
-                     });
+      disableSelection: function () {
+        this.each(function () {
+          this.onselectstart = function () {
+            return false;
+          };
+        });
+      }
+    });
     $('body').disableSelection();
 
     /* set the size of the window */
@@ -28,30 +26,39 @@
 
       setTimeout(function () {
         fitWindowToContent();
-      }, 100);
+      }, FIT_WIN_TIMEOUT);
     });
-    $('.exp-title').click(function () {
-      //todo: I'm don't know, why 'e.target' don't work which work in next handler...
-      var formName = this.parentElement.nextElementSibling.getAttribute('id').slice(5);
-      $('#exp_content_' + formName).toggleClass('hiddenElem');
-      setTimeout(function () {
-        fitWindowToContent();
-      }, 100);
-    });
-    $('.title-bg').click(function (e) {
-      var formName = e.target.nextElementSibling.getAttribute('id').slice(5);
-      $('#exp_content_' + formName).toggleClass('hiddenElem');
-      setTimeout(function () {
-        fitWindowToContent();
-      }, 100);
+    /**
+     * event delegation
+     * */
+    $('#export_sets').click(function (e) {
+      var formName;
+
+      if ($(e.target).hasClass('label-title')) {
+        formName = e.target.parentElement.parentElement.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+      }
+      if ($(e.target).hasClass('title-bg')) {
+        formName = e.target.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+      }
+
     });
 
     $('#form_general').sisyphus({customKeyPrefix: 'general'});
     $('#form_text').sisyphus({customKeyPrefix: 'text'});
     $('#form_white').sisyphus({customKeyPrefix: 'white'});
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
+    $('#form_folderName').sisyphus();
 
     $('#btn_defaults_all').click(function () {
+      if (!confirm('Вы уверены, что хотите сбросить все настройки?')) return;
       $('form').trigger('reset');
     });
     $('#btn_defaults_general').click(function () {
@@ -70,29 +77,19 @@
     $('.btn-export').click(function () {
       // alert(($(this).attr('id')).slice(11));
       var opts = getFormValToObj(($(this).attr('id')).slice(11));
+      opts.folderName = document.getElementById('txt_folderName').value;
       new CSInterface().evalScript('ai_exp_jpg(' + JSON.stringify(opts) + ')');
     });
 
     $('#btn_reloadHtml').click(reloadPanel);
-    $('#btn_reloadJsx').click(function () {
-      new CSInterface().requestOpenExtension('com.wk.ai_exp.dialog');
-      new CSInterface().closeExtension();
-    });
   }
 
   function fitWindowToContent() {
-    if (typeof csInterface.resizeContent != 'undefined') {
-      var bodyVertMargin = parseInt($('body').css('marginTop')) + parseInt($('body').css('marginBottom'));
-      var bodyHorzMargin = parseInt($('body').css('marginLeft')) + parseInt($('body').css('marginRight'));
-      // console.log("Width: " + $("#extension-panel").width() + ", Height: " + Math.floor($("#extension-panel").innerHeight()));
-      csInterface.resizeContent($('#content').width() +
-                                bodyHorzMargin, Math.floor($('#content').innerHeight()) + bodyVertMargin);
-    }
+    setTimeout(function () {
+      csInterface.resizeContent(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
+    }, 100);
   }
-  /**
-   * @param {String} the name of export set that a part of id of the set
-   * @return {Object} - obj that receved to jsx function ai_exp_jpg
-   * */
+
   function getFormValToObj(name) {
     name = name || 'general';
 

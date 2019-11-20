@@ -1,8 +1,9 @@
 /*Your styles*/
 
 body {
- margin   : 20px;
- overflow : hidden !important;
+ margin         : 10px;
+ overflow       : hidden !important;
+ padding-bottom : 20px;
  }
 
 #content {
@@ -10,39 +11,6 @@ body {
  margin-left    : auto;
  vertical-align : middle;
  width          : 100%;
- }
-
-/*
-Those classes will be edited at runtime with values specified
-by the settings of the CC application
-*/
-.hostFontColor {
- }
-
-.hostFontFamily {
- }
-
-.hostFontSize {
- }
-
-/*font family, color and size*/
-.hostFont {
- }
-
-/*background color*/
-.hostBgd {
- }
-
-/*lighter background color*/
-.hostBgdLight {
- }
-
-/*darker background color*/
-.hostBgdDark {
- }
-
-/*background color and font*/
-.hostElt {
  }
 
 .hostButton {
@@ -140,7 +108,17 @@ input[type=text] {
  border : 1px solid rgba(0, 0, 0, .4);
  }
 
-#path input[type=text] {
- width  : 250px;
+#folderName input[type=text] {
+ /*width  : 250px;
+ height : 16px;*/
  height : 16px;
+ }
+
+#folderName {
+ padding-left : 4px;
+ }
+
+.footer {
+ margin-top    : 5px;
+ /*margin-bottom : 5px;*/
  }
