@@ -86,7 +86,7 @@
 
   function fitWindowToContent() {
     setTimeout(function () {
-      csInterface.resizeContent(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
+      csInterface.resizeContent(document.documentElement.offsetWidth, document.documentElement.offsetHeight);
     }, 100);
   }
 
