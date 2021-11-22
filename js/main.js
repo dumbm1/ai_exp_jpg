@@ -11,14 +11,14 @@
     loadJSX('json2.js');
 
     jQuery.fn.extend({
-      disableSelection: function () {
-        this.each(function () {
-          this.onselectstart = function () {
-            return false;
-          };
-        });
-      }
-    });
+                       disableSelection: function () {
+                         this.each(function () {
+                           this.onselectstart = function () {
+                             return false;
+                           };
+                         });
+                       }
+                     });
     $('body').disableSelection();
 
     /* set the size of the window */
@@ -27,6 +27,7 @@
       setTimeout(function () {
         fitWindowToContent();
       }, FIT_WIN_TIMEOUT);
+      appendParams2title();
     });
     /**
      * event delegation
@@ -84,6 +85,18 @@
     $('#btn_reloadHtml').click(reloadPanel);
   }
 
+  function appendParams2title() {
+    let titleElem = document.getElementsByClassName('exp-title');
+
+    for (let i = 0; i < titleElem.length; i++) {
+      let spanElem = document.createElement('span');
+      spanElem.innerHTML = ': Hello Fucking World, Hello, Pussy World, Hello sucking world!!!!!';
+      spanElem.className = 'helloClass';
+      titleElem[i].append(spanElem);
+    }
+
+  }
+
   function fitWindowToContent() {
     setTimeout(function () {
       csInterface.resizeContent(document.documentElement.offsetWidth, document.documentElement.offsetHeight);
@@ -108,11 +121,13 @@
 
     return obj;
   }
+
   function loadJSX(fileName) {
     var csInterface = new CSInterface();
     var extensionRoot = csInterface.getSystemPath(SystemPath.EXTENSION) + '/jsx/';
     csInterface.evalScript('$.evalFile("' + extensionRoot + fileName + '")');
   }
+
   function reloadPanel() {
     location.reload();
   }
