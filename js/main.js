@@ -27,27 +27,42 @@
       setTimeout(function () {
         fitWindowToContent();
       }, FIT_WIN_TIMEOUT);
-      appendParams2title();
+      addParams2Titles();
     });
     /**
      * event delegation
      * */
     $('#export_sets').click(function (e) {
-      var formName;
+      let formName;
 
       if ($(e.target).hasClass('label-title')) {
+        formName = e.target.parentElement.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+        addParams2Titles();
+      } else if ($(e.target).hasClass('settings-in-title')) {
+        formName = e.target.parentElement.nextElementSibling.getAttribute('id').slice(5);
+        $('#exp_content_' + formName).toggleClass('hiddenElem');
+        setTimeout(function () {
+          fitWindowToContent();
+        }, FIT_WIN_TIMEOUT);
+        addParams2Titles();
+      } else if ($(e.target).hasClass('settings-in-title__elem')) {
         formName = e.target.parentElement.parentElement.nextElementSibling.getAttribute('id').slice(5);
         $('#exp_content_' + formName).toggleClass('hiddenElem');
         setTimeout(function () {
           fitWindowToContent();
         }, FIT_WIN_TIMEOUT);
-      }
-      if ($(e.target).hasClass('title-bg')) {
+        addParams2Titles();
+      } else if ($(e.target).hasClass('title-bg')) {
         formName = e.target.nextElementSibling.getAttribute('id').slice(5);
         $('#exp_content_' + formName).toggleClass('hiddenElem');
         setTimeout(function () {
           fitWindowToContent();
         }, FIT_WIN_TIMEOUT);
+        addParams2Titles();
       }
 
     });
@@ -61,6 +76,7 @@
     $('#btn_defaults_all').click(function () {
       if (!confirm('Вы уверены, что хотите сбросить все настройки?')) return;
       $('form').trigger('reset');
+
     });
     $('#btn_defaults_general').click(function () {
       $('#form_general').trigger('reset');
@@ -85,16 +101,78 @@
     $('#btn_reloadHtml').click(reloadPanel);
   }
 
-  function appendParams2title() {
-    let titleElem = document.getElementsByClassName('exp-title');
+  function addParams2Titles() {
 
-    for (let i = 0; i < titleElem.length; i++) {
-      let spanElem = document.createElement('span');
-      spanElem.innerHTML = ': Hello Fucking World, Hello, Pussy World, Hello sucking world!!!!!';
-      spanElem.className = 'helloClass';
-      titleElem[i].append(spanElem);
+    let previousParams = document.querySelectorAll('.settings-in-title');
+    for (let i = 0; i < previousParams.length; i++) {
+      previousParams[i].remove();
     }
 
+    let title_backgrounds = document.querySelectorAll('.title-bg');
+
+    for (let i = 0; i < title_backgrounds.length; i++) {
+      let div = document.createElement('div');
+      let formName = document.getElementsByTagName('form')[i].getAttribute('id').slice(5);
+      let params = getFormValToObj(formName);
+      div.classList = 'settings-in-title hiddenElem';
+
+      for (let key in params) {
+
+        switch (params['ch_use_artboards']) {
+          case false:
+            params['ch_use_artboards'] = '';
+            params['rad_artbs_all'] = '';
+            params['rad_artbs_range'] = '';
+          case true:
+            if (params['rad_artbs_all'] === true) {
+              params['ch_use_artboards'] = 'Artboards=all';
+              params['rad_artbs_all'] = '';
+              params['rad_artbs_range'] = '';
+            } else {
+              params['ch_use_artboards'] = 'Artboards=' + params['txt_artbs_range'];
+              params['rad_artbs_all'] = '';
+              params['rad_artbs_range'] = '';
+              params['txt_artbs_range'] = '';
+            }
+            break;
+
+          default:
+            break;
+        }
+
+        switch (params[key]) {
+          case 'Baseline (Standard)':
+            params[key] = 'Baseline';
+            params['sel_scans'] = '';
+            break;
+          case 'Baseline Optimized':
+            params[key] = 'Baseline Opt.';
+            params['sel_scans'] = '';
+            break;
+          case 'Art Optimized (Supersampling)':
+            params[key] = 'Art Opt.';
+            break;
+          case 'Text Optimized (Hinted)':
+            params[key] = 'Text Opt.';
+            break;
+          case 'Progressive':
+            params[key] = 'Progressive=' + params['sel_scans'] + 'sc';
+            params['sel_scans'] = '';
+            break;
+          default:
+            break;
+        }
+
+        if (params[key] === '') continue;
+
+        let span = document.createElement('span');
+        span.className = 'settings-in-title__elem';
+
+        span.innerHTML = params[key] + ', ';
+        div.append(span);
+      }
+      document.getElementsByClassName('btn-export__ext')[i].before(div);
+    }
   }
 
   function fitWindowToContent() {

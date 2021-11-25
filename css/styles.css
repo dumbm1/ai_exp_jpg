@@ -62,20 +62,15 @@ input[type=text] {
 }
 
 .exp-title {
- height   : 25px;
- display  : inline-block;
- overflow : hidden;
+ height  : 25px;
+ display : inline-block;
 }
 
-.exp-title label {
- display  : inline-block;
- margin   : 3px 0 0 5px;
- cursor   : pointer;
- overflow : hidden;
-}
-
-.exp-title label:first-of-type {
- font-weight : bold;
+.label-title {
+ margin         : 0 3px 0 5px;
+ cursor         : pointer;
+ font-weight    : bold;
+ align-self: center;
 }
 
 .exp-title:hover {
@@ -83,8 +78,6 @@ input[type=text] {
 }
 
 .btn-export {
- display : inline-block;
- float   : right;
 }
 
 .line {
