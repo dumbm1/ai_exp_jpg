@@ -116,6 +116,8 @@
       let params = getFormValToObj(formName);
       div.classList = 'settings-in-title';
 
+      let countComma = 0;
+
       for (let key in params) {
 
         switch (params['ch_use_artboards']) {
@@ -171,9 +173,17 @@
         let span = document.createElement('span');
         span.className = 'settings-in-title__elem';
 
-        span.innerHTML = params[key] + ', ';
+        if (countComma) {
+          span.innerHTML = ', ' + params[key];
+        } else {
+          span.innerHTML = params[key];
+        }
+
         div.append(span);
+
+        countComma++;
       }
+
       document.getElementsByClassName('btn-export__ext')[i].before(div);
     }
   }

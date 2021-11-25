@@ -67,10 +67,10 @@ input[type=text] {
 }
 
 .label-title {
- margin         : 0 3px 0 5px;
- cursor         : pointer;
- font-weight    : bold;
- align-self: center;
+ margin      : 0 3px 0 5px;
+ cursor      : pointer;
+ font-weight : bold;
+ align-self  : center;
 }
 
 .exp-title:hover {
@@ -110,4 +110,31 @@ input[type=text] {
  font-weight : normal !important;
  overflow    : hidden !important;
  display     : inline-block;
+}
+
+.title-bg__ext {
+ width           : 100%;
+ display         : flex;
+ flex-flow       : row nowrap;
+ justify-content : space-between;
+ overflow        : hidden;
+}
+
+.exp-title__ext {
+}
+
+.label-title__ext {
+}
+
+.settings-in-title {
+ overflow    : hidden;
+ display     : inline-flex;
+ flex-flow   : row wrap;
+ flex-grow   : 1;
+ align-items : center;
+}
+
+.settings-in-title__elem {
+ white-space  : nowrap;
+ /*margin-right : 2px;*/
 }
