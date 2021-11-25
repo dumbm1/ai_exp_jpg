@@ -114,7 +114,7 @@
       let div = document.createElement('div');
       let formName = document.getElementsByTagName('form')[i].getAttribute('id').slice(5);
       let params = getFormValToObj(formName);
-      div.classList = 'settings-in-title hiddenElem';
+      div.classList = 'settings-in-title';
 
       for (let key in params) {
 
@@ -123,11 +123,14 @@
             params['ch_use_artboards'] = '';
             params['rad_artbs_all'] = '';
             params['rad_artbs_range'] = '';
+            params['txt_artbs_range'] = '';
+            break;
           case true:
             if (params['rad_artbs_all'] === true) {
               params['ch_use_artboards'] = 'Artboards=all';
               params['rad_artbs_all'] = '';
               params['rad_artbs_range'] = '';
+              params['txt_artbs_range'] = '';
             } else {
               params['ch_use_artboards'] = 'Artboards=' + params['txt_artbs_range'];
               params['rad_artbs_all'] = '';
