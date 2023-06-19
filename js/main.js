@@ -1,7 +1,7 @@
 (function () {
   'use strict';
-  var FIT_WIN_TIMEOUT = 100;
-  var csInterface = new CSInterface();
+  const FIT_WIN_TIMEOUT = 100;
+  let csInterface = new CSInterface();
   init();
 
   function init() {
@@ -72,6 +72,7 @@
     $('#form_white').sisyphus({customKeyPrefix: 'white'});
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
     $('#form_other2').sisyphus({customKeyPrefix: 'other2'});
+    $('#form_other2').sisyphus({customKeyPrefix: 'other3'});
     $('#form_folderName').sisyphus();
 
     $('#btn_defaults_all').click(function () {
@@ -93,6 +94,9 @@
     });
     $('#btn_defaults_other2').click(function () {
       $('#form_other2').trigger('reset');
+    });
+    $('#btn_defaults_other3').click(function () {
+      $('#form_other3').trigger('reset');
     });
 
     $('.btn-export').click(function () {

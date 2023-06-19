@@ -387,6 +387,80 @@
    </div>
 
   </form>
+
+  <div class="title-bg title-bg__ext">
+   <label class="label-title label-title__ext">Other3:</label>
+   <input type="button" id="btn_export_other3" class="hostButton btn-export btn-export__ext" value="Export"/>
+  </div>
+  <form id="form_other3">
+   <div id="exp_content_other3" class="exp-content hiddenElem">
+    <div class="line">
+     <label for="sel_color_model_other3">Color Model:</label>
+     <select id="sel_color_model_other3" class="hostTextarea">
+      <option>RGB</option>
+      <option>CMYK</option>
+      <option>Grayscale</option>
+     </select>
+     <label for="nmb_quality_other3">Quality:</label>
+     <input type="number" id="nmb_quality_other3" class="hostTextarea" min="1" max="10" step="1"
+            value="6">
+     <label for="sel_resolution_other3">Resolution:</label>
+     <select id="sel_resolution_other3" class="hostTextarea">
+      <option>72</option>
+      <option>150</option>
+      <option>200</option>
+      <option>250</option>
+      <option selected>300</option>
+      <option>350</option>
+      <option>400</option>
+      <option>450</option>
+      <option>500</option>
+      <option>550</option>
+     </select>
+    </div>
+    <div id="compress_method_other3" class="line">
+     <label for="sel_compress_method_other3">Compression Method:</label>
+     <select id="sel_compress_method_other3" class="hostTextarea">
+      <option>Baseline (Standard)</option>
+      <option>Baseline Optimized</option>
+      <option>Progressive</option>
+     </select>
+     <label for="sel_scans_other3">Scans:</label>
+     <select id="sel_scans_other3" class="hostTextarea">
+      <option>03</option>
+      <option>04</option>
+      <option>05</option>
+     </select>
+    </div>
+    <div id="antialias_other3" class="line">
+     <label for="sel_antialias_other3">Anti-aliasing:</label>
+     <select id="sel_antialias_other3" class="hostTextarea">
+      <option>None</option>
+      <option selected>Art Optimized (Supersampling)</option>
+      <option>Text Optimized (Hinted)</option>
+     </select>
+    </div>
+    <div id="artbs_other3" class="line">
+     <input type="checkbox" value="Use artboards" id="ch_use_artbs_other3" checked>
+     <label for="ch_use_artbs_other3">Use Artboards</label>
+     <input type="radio" id="rad_artbs_all_other3" name="choose_artbs">
+     <label for="rad_artbs_all_other3">All</label>
+     <input type="radio" id="rad_artbs_range_other3" name="choose_artbs" checked>
+     <label for="rad_artbs_range_other3">Range</label>
+     <label for="txt_artbs_range_other3"></label>
+     <input type="text" id="txt_artbs_range_other3" class="hostTextarea" value="3">
+    </div>
+    <div id="postfix_other3" class="line">
+     <label for="txt_postfix_other3">Postfix Label:</label>
+     <input type="text" id="txt_postfix_other3" class="hostTextarea" value=""
+            placeholder="" width="200px">
+    </div>
+    <div id="btns_other3" class="line">
+     <input type="button" id="btn_defaults_other3" class="hostButton" value="Defaults"/>
+    </div>
+   </div>
+
+  </form>
   
  </div>
 
