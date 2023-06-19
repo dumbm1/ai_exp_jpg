@@ -71,6 +71,7 @@
     $('#form_text').sisyphus({customKeyPrefix: 'text'});
     $('#form_white').sisyphus({customKeyPrefix: 'white'});
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
+    $('#form_other2').sisyphus({customKeyPrefix: 'other2'});
     $('#form_folderName').sisyphus();
 
     $('#btn_defaults_all').click(function () {
@@ -89,6 +90,9 @@
     });
     $('#btn_defaults_other').click(function () {
       $('#form_other').trigger('reset');
+    });
+    $('#btn_defaults_other2').click(function () {
+      $('#form_other2').trigger('reset');
     });
 
     $('.btn-export').click(function () {
