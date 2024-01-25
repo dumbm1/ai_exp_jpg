@@ -72,7 +72,7 @@
     $('#form_white').sisyphus({customKeyPrefix: 'white'});
     $('#form_other').sisyphus({customKeyPrefix: 'other'});
     $('#form_other2').sisyphus({customKeyPrefix: 'other2'});
-    $('#form_other2').sisyphus({customKeyPrefix: 'other3'});
+    $('#form_other3').sisyphus({customKeyPrefix: 'other3'});
     $('#form_folderName').sisyphus();
 
     $('#btn_defaults_all').click(function () {
